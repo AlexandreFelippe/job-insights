@@ -7,4 +7,10 @@ class ProcessIndustries(ProcessJobs):
         super().__init__()
 
     def get_unique_industries(self) -> List[str]:
-        pass
+        unique_industries = []
+        for job in self.jobs_list:
+            industry = job.get('industry')
+            if industry and industry not in unique_industries:
+                unique_industries.append(industry)
+
+        return unique_industries
