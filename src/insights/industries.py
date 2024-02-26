@@ -1,5 +1,5 @@
 from src.insights.jobs import ProcessJobs
-from typing import List
+from typing import List  # inicio
 
 
 class ProcessIndustries(ProcessJobs):
