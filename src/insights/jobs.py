@@ -13,7 +13,13 @@ class ProcessJobs:
                 self.jobs_list.append(row)
 
     def get_unique_job_types(self) -> List[str]:
-        pass
+        # A função deve retornar uma lista de valores únicos presentes na coluna job_type
+        unique_job_types = list()
+        for job in self.jobs_list:
+            if job["job_type"] not in unique_job_types:
+                unique_job_types.append(job["job_type"])
+
+        return unique_job_types
 
     def filter_by_multiple_criteria(self) -> List[dict]:
         pass
