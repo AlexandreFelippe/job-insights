@@ -17,7 +17,19 @@ class ProcessSalaries(ProcessJobs):
         return min(salaries, default=float('inf'))
 
     def matches_salary_range(self, job: Dict, salary: Union[int, str]) -> bool:
-        pass
+        try:
+            min_salary = float(job['min_salary'])
+            max_salary = float(job['max_salary'])
+
+            if min_salary > max_salary:
+                raise ValueError
+
+            return min_salary <= float(salary) <= max_salary
+        except (ValueError, TypeError) as e:
+            raise ValueError(f"Erro ao processar salários: {e}")
+        except KeyError:
+            raise ValueError("""As chaves 'min_salary' e 'max_salary' são
+                              obrigatórias""")
 
     def filter_by_salary_range(
         self, jobs: List[dict], salary: Union[str, int]
